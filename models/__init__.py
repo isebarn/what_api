@@ -37,7 +37,7 @@ from flask_restx.fields import Boolean
 from flask_restx.fields import Raw
 
 from models.query_sets import ProductQuerySet
-from models.query_sets import BasketQuerySet
+from models.query_sets import CartQuerySet
 
 ## EXTRA
 
@@ -457,8 +457,8 @@ class Product(Extended):
     stock = IntField()
 
 
-class Basket(Extended):
-    meta = {"queryset_class": BasketQuerySet}
+class Cart(Extended):
+    meta = {"queryset_class": CartQuerySet}
 
     email = StringField()
     items = ReferenceField(Product, reverse_delete_rule=NULLIFY)

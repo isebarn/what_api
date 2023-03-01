@@ -5,7 +5,7 @@ table product {
     stock integer
 }
 
-table basket {
+table cart {
     email varchar
     items [ref: > product.id]
 }

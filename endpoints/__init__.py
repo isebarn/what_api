@@ -74,9 +74,9 @@ api = Namespace("api", description="")
 product_base = api.model("product_base", models.Product.base())
 product_reference = api.model("product_reference", models.Product.reference())
 product_full = api.model("product", models.Product.model(api))
-basket_base = api.model("basket_base", models.Basket.base())
-basket_reference = api.model("basket_reference", models.Basket.reference())
-basket_full = api.model("basket", models.Basket.model(api))
+cart_base = api.model("cart_base", models.Cart.base())
+cart_reference = api.model("cart_reference", models.Cart.reference())
+cart_full = api.model("cart", models.Cart.model(api))
 
 
 @api.route("/product")
@@ -116,41 +116,41 @@ class BaseProductController(Resource):
         return models.Product.get(id=product_id).delete()
 
 
-@api.route("/basket")
-class BasketController(Resource):
-    @api.marshal_list_with(api.models.get("basket"), skip_none=True)
+@api.route("/cart")
+class CartController(Resource):
+    @api.marshal_list_with(api.models.get("cart"), skip_none=True)
     def get(self):
-        return models.Basket.qry(request.args)
+        return models.Cart.qry(request.args)
 
-    @api.marshal_with(api.models.get("basket"), skip_none=True)
+    @api.marshal_with(api.models.get("cart"), skip_none=True)
     def post(self):
-        return models.Basket.post(request.get_json())
+        return models.Cart.post(request.get_json())
 
-    @api.marshal_with(api.models.get("basket"), skip_none=True)
+    @api.marshal_with(api.models.get("cart"), skip_none=True)
     def put(self):
-        return models.Basket.put(request.get_json())
+        return models.Cart.put(request.get_json())
 
-    @api.marshal_with(api.models.get("basket"), skip_none=True)
+    @api.marshal_with(api.models.get("cart"), skip_none=True)
     def patch(self):
-        return models.Basket.patch(request.get_json())
+        return models.Cart.patch(request.get_json())
 
 
-@api.route("/basket/<basket_id>")
-class BaseBasketController(Resource):
-    @api.marshal_with(api.models.get("basket"), skip_none=True)
-    def get(self, basket_id):
-        return models.Basket.objects.get(id=basket_id).to_json()
+@api.route("/cart/<cart_id>")
+class BaseCartController(Resource):
+    @api.marshal_with(api.models.get("cart"), skip_none=True)
+    def get(self, cart_id):
+        return models.Cart.objects.get(id=cart_id).to_json()
 
-    @api.marshal_with(api.models.get("basket"), skip_none=True)
-    def put(self, basket_id):
-        return models.Basket.put({"id": basket_id, **request.get_json()})
+    @api.marshal_with(api.models.get("cart"), skip_none=True)
+    def put(self, cart_id):
+        return models.Cart.put({"id": cart_id, **request.get_json()})
 
-    @api.marshal_with(api.models.get("basket"), skip_none=True)
-    def patch(self, basket_id):
-        return models.Basket.patch({"id": basket_id, **request.get_json()})
+    @api.marshal_with(api.models.get("cart"), skip_none=True)
+    def patch(self, cart_id):
+        return models.Cart.patch({"id": cart_id, **request.get_json()})
 
-    def delete(self, basket_id):
-        return models.Basket.get(id=basket_id).delete()
+    def delete(self, cart_id):
+        return models.Cart.get(id=cart_id).delete()
 
 
 routes = list(set([x.urls[0].split("/")[1] for x in api.resources]))
