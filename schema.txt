@@ -7,6 +7,6 @@ table product {
 
 table cart {
     email varchar
-    items [ref: > product.id]
+    item [ref: > product.id]
 }
 

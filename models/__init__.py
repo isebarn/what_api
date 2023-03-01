@@ -461,7 +461,7 @@ class Cart(Extended):
     meta = {"queryset_class": CartQuerySet}
 
     email = StringField()
-    items = ReferenceField(Product, reverse_delete_rule=NULLIFY)
+    item = ReferenceField(Product, reverse_delete_rule=NULLIFY)
 
 
 # def config():
