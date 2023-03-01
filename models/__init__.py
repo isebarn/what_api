@@ -36,6 +36,9 @@ from flask_restx.fields import String
 from flask_restx.fields import Boolean
 from flask_restx.fields import Raw
 
+from models.query_sets import ProductQuerySet
+from models.query_sets import BasketQuerySet
+
 ## EXTRA
 
 
@@ -443,6 +446,22 @@ class Extended(Document, Base):
 
 class EmbeddedDocument(_EmbeddedDocument, Base):
     meta = {"abstract": True, "allow_inheritance": True}
+
+
+class Product(Extended):
+    meta = {"queryset_class": ProductQuerySet}
+
+    name = StringField()
+    description = StringField()
+    price = FloatField()
+    stock = IntField()
+
+
+class Basket(Extended):
+    meta = {"queryset_class": BasketQuerySet}
+
+    email = StringField()
+    items = ReferenceField(Product, reverse_delete_rule=NULLIFY)
 
 
 # def config():

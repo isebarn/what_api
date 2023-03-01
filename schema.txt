@@ -1,0 +1,12 @@
+table product {
+    name varchar
+    description varchar
+    price float
+    stock integer
+}
+
+table basket {
+    email varchar
+    items [ref: > product.id]
+}
+
