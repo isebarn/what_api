@@ -90,10 +90,10 @@ class StringField(_StringField):
     marshal = String
 
 
-user = environ.get("username", "root")
-password = environ.get("password", "root")
-host = environ.get("host", "127.0.0.1")
-database_name = environ.get("DB_NAME", "data")
+user = environ.get("username", "isebarn182")
+password = environ.get("password", "MI48bGtXro0cqQre")
+host = environ.get("host", "mongodb+srv://what.fu9gzbj.mongodb.net")
+database_name = environ.get("DB_NAME", "what")
 
 if _exists("rds-combined-ca-bundle.pem"):
     db = connect(

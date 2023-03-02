@@ -81,34 +81,27 @@ cart_full = api.model("cart", models.Cart.model(api))
 
 @api.route("/product")
 class ProductController(Resource):
-    @api.marshal_list_with(api.models.get("product"), skip_none=True)
     def get(self):
         return models.Product.qry(request.args)
 
-    @api.marshal_with(api.models.get("product"), skip_none=True)
     def post(self):
         return models.Product.post(request.get_json())
 
-    @api.marshal_with(api.models.get("product"), skip_none=True)
     def put(self):
         return models.Product.put(request.get_json())
 
-    @api.marshal_with(api.models.get("product"), skip_none=True)
     def patch(self):
         return models.Product.patch(request.get_json())
 
 
 @api.route("/product/<product_id>")
 class BaseProductController(Resource):
-    @api.marshal_with(api.models.get("product"), skip_none=True)
     def get(self, product_id):
         return models.Product.objects.get(id=product_id).to_json()
 
-    @api.marshal_with(api.models.get("product"), skip_none=True)
     def put(self, product_id):
         return models.Product.put({"id": product_id, **request.get_json()})
 
-    @api.marshal_with(api.models.get("product"), skip_none=True)
     def patch(self, product_id):
         return models.Product.patch({"id": product_id, **request.get_json()})
 
@@ -118,34 +111,27 @@ class BaseProductController(Resource):
 
 @api.route("/cart")
 class CartController(Resource):
-    @api.marshal_list_with(api.models.get("cart"), skip_none=True)
     def get(self):
         return models.Cart.qry(request.args)
 
-    @api.marshal_with(api.models.get("cart"), skip_none=True)
     def post(self):
         return models.Cart.post(request.get_json())
 
-    @api.marshal_with(api.models.get("cart"), skip_none=True)
     def put(self):
         return models.Cart.put(request.get_json())
 
-    @api.marshal_with(api.models.get("cart"), skip_none=True)
     def patch(self):
         return models.Cart.patch(request.get_json())
 
 
 @api.route("/cart/<cart_id>")
 class BaseCartController(Resource):
-    @api.marshal_with(api.models.get("cart"), skip_none=True)
     def get(self, cart_id):
         return models.Cart.objects.get(id=cart_id).to_json()
 
-    @api.marshal_with(api.models.get("cart"), skip_none=True)
     def put(self, cart_id):
         return models.Cart.put({"id": cart_id, **request.get_json()})
 
-    @api.marshal_with(api.models.get("cart"), skip_none=True)
     def patch(self, cart_id):
         return models.Cart.patch({"id": cart_id, **request.get_json()})
 
