@@ -5,4 +5,7 @@ ADD . .
 
 RUN pip3 install -r requirements.txt
 RUN pip3 install gunicorn
-CMD ["gunicorn", "-w 4", "-b", "0.0.0.0:80", "main:app"]
+
+EXPOSE 80
+
+CMD gunicorn --bind=0.0.0.0:80 --forwarded-allow-ips="*" "flaskr:create_app()"
