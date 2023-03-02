@@ -92,7 +92,7 @@ class StringField(_StringField):
 
 user = environ.get("username", "isebarn182")
 password = environ.get("password", "MI48bGtXro0cqQre")
-host = environ.get("host", "mongodb+srv://what.fu9gzbj.mongodb.ne"t)
+host = environ.get("host", "mongodb+srv://what.fu9gzbj.mongodb.net")
 database_name = environ.get("DB_NAME", "data")
 
 if _exists("rds-combined-ca-bundle.pem"):
