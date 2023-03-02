@@ -81,6 +81,7 @@ cart_full = api.model("cart", models.Cart.model(api))
 
 @api.route("/product")
 class ProductController(Resource):
+    @api.marshal_with(api.models.get("product"), skip_none=True)
     def get(self):
         return models.Product.qry(request.args)
 
